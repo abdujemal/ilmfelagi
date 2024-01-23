@@ -1,6 +1,4 @@
 // pages/api/preview.ts
-
-import { NextApiRequest, NextApiResponse } from 'next';
 import { getFirestore, getDoc, doc} from 'firebase/firestore';
 import app from '../../utils/firebase';
 
@@ -13,6 +11,8 @@ export default async function handler(req, res) {
   try {
     const firestore = getFirestore(app);
     const courseDoc = await getDoc(doc(firestore, "Courses", courseId));
+
+    console.log(courseId);
 
     if (!courseDoc.exists()) {
       res.status(404).json({ message: 'Course not found' });
