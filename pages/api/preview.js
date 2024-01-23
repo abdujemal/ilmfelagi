@@ -5,14 +5,10 @@ import { getFirestore, getDocs, collection} from 'firebase/firestore';
 import app from '@/utils/firebase';
 
 // Type for preview data
-type PreviewData = {
-  title: string;
-  description: string;
-  image: string;
-};
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<PreviewData | { message: string }>) {
-  const courseId = req.query.courseId as string; // Extract course ID from URL query
+
+export default async function handler(req, res) {
+  const courseId = req.query.courseId; // Extract course ID from URL query
 
   try {
     const firestore = getFirestore(app);
@@ -23,9 +19,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return;
     }
 
-    let courseDatas : Array<PreviewData> = [];
+    let courseDatas = [];
 
-    courseDoc.forEach((doc: DocumentData)  => {
+    courseDoc.forEach((doc)  => {
       courseDatas.concat({id: doc.id, ...doc.data()})
     });
 
