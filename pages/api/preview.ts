@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const firestore = getFirestore();
     const courseDoc = await  getDocs(collection(firestore, 'courses'));
 
-    if (!courseDoc.exists) {
+    if (!courseDoc) {
       res.status(404).json({ message: 'Course not found' });
       return;
     }
