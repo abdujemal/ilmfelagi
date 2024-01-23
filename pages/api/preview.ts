@@ -1,7 +1,7 @@
 // pages/api/preview.ts
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, getDocs, collection} from 'firebase/firestore';
 
 // Type for preview data
 type PreviewData = {
@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     const firestore = getFirestore();
-    const courseDoc = await firestore.collection('courses').doc(courseId).get();
+    const courseDoc = await  getDocs(collection(firestore, 'courses'));
 
     if (!courseDoc.exists) {
       res.status(404).json({ message: 'Course not found' });
