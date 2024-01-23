@@ -16,16 +16,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   try {
     const firestore = getFirestore(app);
-    const courseDoc = await  getDocs(collection(firestore, 'Courses'));
+    const courseDoc = await getDocs(collection(firestore, 'Courses'));
 
-    if (!courseDoc) {
+    if (courseDoc.length == 0) {
       res.status(404).json({ message: 'Course not found' });
       return;
     }
 
-    const courseData = courseDoc.data() as PreviewData; // Cast data to PreviewData type
+    let courseDatas : Array<PreviewData> = [];
 
-    res.json(courseData);
+    courseDoc.forEach((doc: DocumentData)  => {
+      courseDatas.concat({id: doc.id, ...doc.data()})
+    });
+
+    res.json(courseDatas);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
