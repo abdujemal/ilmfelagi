@@ -18,6 +18,14 @@ function CoursePage({ previewData }) {
         setIsLoading(false);
         previewData && console.log('Existing preview data', previewData); // Access existing data if available
         console.log('Fetched preview data', data); // Log retrieved data
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        const ogImage = document.querySelector('meta[property="og:image"]');
+
+        ogTitle.setAttribute('content', data.title);
+        ogDescription.setAttribute('content', data.description);
+        ogImage.setAttribute('content', data.image);
       })
       .catch((error) => {
         console.error('Error fetching preview data', error);

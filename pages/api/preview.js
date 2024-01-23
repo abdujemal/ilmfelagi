@@ -23,7 +23,9 @@ export default async function handler(req, res) {
 
     // courseDoc.data();
 
-    res.json(courseDoc.data());
+    const data = courseDoc.data();
+
+    res.json({title: data.title, description: data.ustaz, image: data.image,});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
