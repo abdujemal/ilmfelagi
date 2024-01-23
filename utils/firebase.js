@@ -11,7 +11,7 @@ const firebaseConfig = {
   measurementId: "G-GG7DYTFWV3"
 };
 
-const app = getApps.length ? getApps[0] : initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
 
 export default app
