@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getFirestore, getDocs, collection} from 'firebase/firestore';
-import app from '@/utils/firebase';
+import app from '../../utils/firebase';
 
 // Type for preview data
 
