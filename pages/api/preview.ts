@@ -2,6 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getFirestore, getDocs, collection} from 'firebase/firestore';
+import app from '@/utils/firebase';
 
 // Type for preview data
 type PreviewData = {
@@ -14,8 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const courseId = req.query.courseId as string; // Extract course ID from URL query
 
   try {
-    const firestore = getFirestore();
-    const courseDoc = await  getDocs(collection(firestore, 'courses'));
+    const firestore = getFirestore(app);
+    const courseDoc = await  getDocs(collection(firestore, 'Courses'));
 
     if (!courseDoc) {
       res.status(404).json({ message: 'Course not found' });
