@@ -66,7 +66,6 @@
 
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { firestore } from '../firebaseClient';
 
 const LinkPreview = ({ metadata }) => {
   useEffect(() => {
@@ -119,6 +118,8 @@ export async function getServerSideProps({ params }) {
         };
       })
       .catch((error) => {
+        setIsLoading(false);
+
         console.error('Error fetching preview data', error);
         return {
           notFound: true,
