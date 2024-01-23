@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 
 function CoursePage({ previewData }) {
