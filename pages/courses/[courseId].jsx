@@ -113,7 +113,7 @@ export async function getServerSideProps({ params }) {
 
         return {
           props: {
-            data,
+            metadata: data,
           },
         };
       })
