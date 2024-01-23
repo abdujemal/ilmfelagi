@@ -28,6 +28,13 @@ function CoursePage({ previewData }) {
   // Render preview elements for Telegram based on previewData or fallback state
   return (
     <>
+    <Head>
+        <title>{previewData.title}</title>
+        <meta property="og:title" content={previewData.title} />
+        <meta property="og:description" content={previewData.description} />
+        <meta property="og:image" content={previewData.image} />
+        {/* Add other necessary meta tags */}
+      </Head>
       {/* ... Course content */}
       {/* ... Render preview elements based on previewData */}
       {isLoading ? <p>Loading...</p> : null}
