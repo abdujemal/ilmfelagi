@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     
 
     if (!courseDoc.exists()) {
-      res.status(404).json({ message: `Course not found on id ${courseDoc.data()}` });
+      res.status(404).json({ message: `Course not found on id ${courseDoc}` });
       return;
     }
 
